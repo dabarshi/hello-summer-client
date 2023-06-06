@@ -3,6 +3,7 @@ import {
 } from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
+import NotFoundPage from "../Pages/NotFoundPage/NotFoundPage";
 
 export const router = createBrowserRouter([
     {
@@ -15,4 +16,8 @@ export const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path: "*",
+        element: <NotFoundPage></NotFoundPage>
+    }
 ]);
