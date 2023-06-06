@@ -1,4 +1,4 @@
-
+import logo from '../../assets/logo.svg';
 
 const Navbar = () => {
     return (
@@ -20,7 +20,9 @@ const Navbar = () => {
                         <li><a>Item 3</a></li>
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                <a className="btn btn-ghost normal-case text-xl">
+                <img width='80px' src={logo} alt="Hello Summer" />
+                </a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
