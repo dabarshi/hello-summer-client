@@ -40,9 +40,11 @@ const Footer = () => {
                 </div>
 
             </div>
-            <div className='h-[1px] mx-auto '></div>
+            {/* <div className='h-[1px] mx-auto '></div> */}
             <div className="footer footer-center p-4 bg-neutral text-neutral-content">
+                <div className="border-t-2 md:w-1/2 pt-4">
                 <p>Copyright © {year} - All right reserved by Hello Summer</p>
+                </div>
             </div>
         </footer>
     );
