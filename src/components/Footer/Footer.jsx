@@ -5,8 +5,8 @@ import contacts from '../../assets/footer/contacts.png';
 const Footer = () => {
     const year = new Date().getFullYear();
     return (
-        <footer>
-            <div className="grid grid-cols-1 md:grid-cols-3 text-center bg-neutral text-neutral-content">
+        <footer className="bg-neutral text-neutral-content rounded-lg">
+            <div className="grid grid-cols-1 md:grid-cols-3 text-center p-8">
                 <div className='grid place-items-center p-8 space-y-3'>
                     <figure className="pt-6">
                         <img width='48px' src={logo} />
@@ -41,7 +41,7 @@ const Footer = () => {
 
             </div>
             {/* <div className='h-[1px] mx-auto '></div> */}
-            <div className="footer footer-center p-4 bg-neutral text-neutral-content">
+            <div className="footer footer-center p-4">
                 <div className="border-t-2 md:w-1/2 pt-4">
                 <p>Copyright © {year} - All right reserved by Hello Summer</p>
                 </div>
