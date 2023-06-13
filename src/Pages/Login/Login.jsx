@@ -3,6 +3,7 @@ import Lottie from "lottie-react";
 import registerLottiImg from "../../assets/register/registerLotti.json";
 import { FaGoogle } from 'react-icons/fa';
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 const Login = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -68,6 +69,7 @@ const Login = () => {
                             <input type="submit" value="Register" className="btn bg-[#005BA2] hover:bg-[#07416d] text-white w-full" />
                         </div>
                     </form>
+                    <p className="my-4">New here? please,<Link to="/register" className="link link-primary">Register</Link></p>
 
                 </div>
 

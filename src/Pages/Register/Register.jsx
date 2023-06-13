@@ -5,6 +5,7 @@ import logo from "../../assets/logo.svg";
 import { FaGoogle } from 'react-icons/fa';
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import { Link } from "react-router-dom";
 
 
 const Register = () => {
@@ -119,6 +120,7 @@ const Register = () => {
                         </div>
 
                     </form>
+                    <p className="my-4">Already have an account? please <Link to="/login" className="link link-primary">Login</Link></p>
                 </div>
             </div>
         </div>
