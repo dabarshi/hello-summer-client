@@ -38,6 +38,7 @@ const Register = () => {
                     <h3 className="text-4xl font-bold">Register</h3>
                 </div>
             </div>
+            {/* Main Content */}
             <div className="grid md:grid-cols-2 gap-10 items-center">
                 {/* Lottie imgae left side */}
                 <div className="border-b-2 md:border-b-0 md:border-r-2 border-yellow-400 pb-2">
@@ -80,7 +81,7 @@ const Register = () => {
                             {/* Gender */}
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Photo URL</span>
+                                    <span className="label-text">Gender</span>
                                 </label>
                                 <select {...register("gender")} className="select select-bordered w-full">
                                     <option>Male</option>
