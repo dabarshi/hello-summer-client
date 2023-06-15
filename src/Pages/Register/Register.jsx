@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 
 const Register = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const { createNewUser, updateUser } = useContext(AuthContext);
+    const { createNewUser, updateUser, googleSignIn } = useContext(AuthContext);
     const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
@@ -24,6 +24,12 @@ const Register = () => {
 
     const passwordVisibilityToggle = () => {
         setShowPassword(!showPassword);
+    }
+    // handle google sign in 
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+        .then(result => console.log(result))
+        .catch(error => console.log(error))
     }
 
     // handle submit
@@ -83,7 +89,7 @@ const Register = () => {
                 <div className="px-4">
                     {/* Google sign in */}
                     <div className="text-center">
-                        <button className="btn bg-[#005BA2] text-white hover:bg-[#07416d]"><FaGoogle></FaGoogle>Google Sign-in</button>
+                        <button onClick={handleGoogleSignIn} className="btn bg-[#005BA2] text-white hover:bg-[#07416d]"><FaGoogle></FaGoogle>Google Sign-in</button>
                     </div>
                     <div className="divider"></div>
                     {/* Form Start */}
@@ -139,9 +145,9 @@ const Register = () => {
                                         showPassword ? <FaEyeSlash title="hide" /> : <FaEye title="show" />}
                                 </button>
 
-                                {errors.password?.type === 'required' && <p role="alert">Password is required</p>}
-                                {errors.password?.type === 'minLength' && <p role="alert">The password is less than 6 characters</p>}
-                                {errors.password?.type === 'pattern' && <p role="alert">The password don`t have a special character or a capital letter</p>}
+                                {errors.password?.type === 'required' && <p className="text-red-600" role="alert">Password is required</p>}
+                                {errors.password?.type === 'minLength' && <p className="text-red-600" role="alert">The password is less than 6 characters</p>}
+                                {errors.password?.type === 'pattern' && <p className="text-red-600" role="alert">The password don`t have a special character or a capital letter</p>}
                             </div>
                             {/* Confirm Password */}
                             <div className="form-control relative">
@@ -153,9 +159,9 @@ const Register = () => {
                                     {
                                         showPassword ? <FaEyeSlash title="hide" /> : <FaEye title="show" />}
                                 </button>
-                                {errors.confirmPassword?.type === 'required' && <p role="alert">Confirm Password is required</p>}
-                                {errors.confirmPassword?.type === 'validate' && <p role="alert">Not Matched</p>}
-                                {error && <p role="alert">Passwords do not match.</p>}
+                                {errors.confirmPassword?.type === 'required' && <p className="text-red-600" role="alert">Confirm Password is required</p>}
+                                {errors.confirmPassword?.type === 'validate' && <p className="text-red-600" role="alert">Not Matched</p>}
+                                {error && <p className="text-red-600" role="alert">Passwords do not match.</p>}
                             </div>
                         </div>
                         {/* Submit Button */}

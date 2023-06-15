@@ -3,20 +3,35 @@ import Lottie from "lottie-react";
 import registerLottiImg from "../../assets/register/registerLotti.json";
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const { loginWithEmailAndPassword } = useContext(AuthContext);
-
+    const { loginWithEmailAndPassword, googleSignIn } = useContext(AuthContext);
+    const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     // handle password visibility
 
     const passwordVisibilityToggle = () => {
         setShowPassword(!showPassword);
+    }
+
+    // handle google sign in 
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(result => {
+                console.log(result)
+                Swal.fire('Log-in successful')
+                navigate(from)
+            })
+            .catch(error => setError(error.message))
     }
 
     // handle submit
@@ -25,10 +40,23 @@ const Login = () => {
         loginWithEmailAndPassword(data.email, data.password)
             .then((result) => {
                 console.log(result)
+                Swal.fire('Log-in successful')
+                navigate(from)
             })
-            .then(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                if (error.message == "Firebase: Error (auth/wrong-password).") {
+                    setError("Please, enter correct password")
+                    return;
+                }
+                if (error.message == "Firebase: Error (auth/user-not-found).") {
+                    setError("Email does not match");
+                    return;
+                }
+                setError(error.message);
+            })
 
-        console.log(data)
+        // console.log(data)
 
         reset();
     };
@@ -54,7 +82,7 @@ const Login = () => {
                 <div className=" px-4 lg:px-32 py-4">
                     {/* Google sign in */}
                     <div className="text-center">
-                        <button className="btn bg-[#005BA2] text-white hover:bg-[#07416d]"><FaGoogle></FaGoogle>Google Sign-in</button>
+                        <button onClick={handleGoogleSignIn} className="btn bg-[#005BA2] text-white hover:bg-[#07416d]"><FaGoogle></FaGoogle>Google Sign-in</button>
                     </div>
                     <div className="divider"></div>
                     {/* Form Start */}
@@ -81,13 +109,14 @@ const Login = () => {
                                 {
                                     showPassword ? <FaEyeSlash title="hide" /> : <FaEye title="show" />}
                             </button>
-                            {errors.password?.type === 'required' && <p role="alert">Password is required</p>}
-                            {errors.password?.type === 'minLength' && <p role="alert">The password is less than 6 characters</p>}
-                            {errors.password?.type === 'pattern' && <p role="alert">The password don`t have a special character or a capital letter</p>}
+                            <p className="text-red-600"><small>{error}</small></p>
+                            {errors.password?.type === 'required' && <p className="text-red-600" role="alert">Password is required</p>}
+                            {errors.password?.type === 'minLength' && <p className="text-red-600" role="alert">The password is less than 6 characters</p>}
+                            {errors.password?.type === 'pattern' && <p className="text-red-600" role="alert">The password don`t have a special character or a capital letter</p>}
                         </div>
                         {/* Submit Button */}
                         <div className="mt-8">
-                            <input type="submit" value="Register" className="btn bg-[#005BA2] hover:bg-[#07416d] text-white w-full" />
+                            <input type="submit" value="Login" className="btn bg-[#005BA2] hover:bg-[#07416d] text-white w-full" />
                         </div>
                     </form>
                     <p className="my-4">New here? please <Link to="/register" className="link link-primary">Register</Link></p>
