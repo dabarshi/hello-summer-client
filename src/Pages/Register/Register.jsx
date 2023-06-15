@@ -2,30 +2,64 @@ import { useForm } from "react-hook-form";
 import Lottie from "lottie-react";
 import registerLottiImg from "../../assets/register/registerLotti.json";
 import logo from "../../assets/logo.svg";
-import { FaGoogle } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const Register = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const [matchPassword, setMatchPassword] = useState(false);
-    const { createNewUser } = useContext(AuthContext);
+    const { createNewUser, updateUser } = useContext(AuthContext);
+    const [error, setError] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+
+
+    // handle password visibility
+
+    const passwordVisibilityToggle = () => {
+        setShowPassword(!showPassword);
+    }
+
+    // handle submit
     const onSubmit = data => {
         if (data.password !== data.confirmPassword) {
-            setMatchPassword(!matchPassword);
+            setError("Passwords do not match")
             return;
         }
-        setMatchPassword(false);
+        setError('');
         console.log(data)
+        // create a new user with email and password
         createNewUser(data.email, data.password)
-        .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser);
-        })
-        reset();
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                // update user info
+                updateUser(data.name, data.photoURL)
+                    .then((result) => {
+                        console.log(result)
+                        console.log("updated")
+                    })
+                    .catch(error => console.log(error))
+
+                Swal.fire('Registration Successful');
+                reset();
+                navigate(from);
+            })
+            .catch(error => {
+                // console.log(error)
+
+                if (error.message == "Firebase: Error (auth/email-already-in-use).") {
+                    setError("Email Already Exist")
+                }
+                else (setError(error.message));
+            })
+
     };
     // console.log(watch("name"));
     return (
@@ -76,8 +110,8 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Photo URL</span>
                                 </label>
-                                <input type="text" {...register("photo", { required: true })} placeholder="Photo URL" className="input input-bordered" />
-                                {errors.photo?.type === 'required' && <p role="alert">Photo URL is required</p>}
+                                <input type="text" {...register("photoURL", { required: true })} placeholder="Photo URL" className="input input-bordered" />
+                                {errors.photoURL?.type === 'required' && <p role="alert">Photo URL is required</p>}
                             </div>
                             {/* Gender */}
                             <div className="form-control">
@@ -90,28 +124,38 @@ const Register = () => {
                                 </select>
                             </div>
                             {/* Password */}
-                            <div className="form-control">
+                            <div className="form-control relative">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" {...register("password", {
+
+                                <input type={showPassword ? "text" : "password"} {...register("password", {
                                     required: true,
                                     minLength: 6,
                                     pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/
                                 })} placeholder="Password" className="input input-bordered" />
+                                <button className="absolute top-14 right-5" onClick={passwordVisibilityToggle}>
+                                    {
+                                        showPassword ? <FaEyeSlash title="hide" /> : <FaEye title="show" />}
+                                </button>
+
                                 {errors.password?.type === 'required' && <p role="alert">Password is required</p>}
                                 {errors.password?.type === 'minLength' && <p role="alert">The password is less than 6 characters</p>}
                                 {errors.password?.type === 'pattern' && <p role="alert">The password don`t have a special character or a capital letter</p>}
                             </div>
                             {/* Confirm Password */}
-                            <div className="form-control">
+                            <div className="form-control relative">
                                 <label className="label">
                                     <span className="label-text">Confirm Password</span>
                                 </label>
-                                <input type="password" {...register("confirmPassword", { required: true })} placeholder="Confirm  Password" className="input input-bordered" />
+                                <input type={showPassword ? "text" : "password"} {...register("confirmPassword", { required: true })} placeholder="Confirm  Password" className="input input-bordered" />
+                                <button className="absolute top-14 right-5" onClick={passwordVisibilityToggle}>
+                                    {
+                                        showPassword ? <FaEyeSlash title="hide" /> : <FaEye title="show" />}
+                                </button>
                                 {errors.confirmPassword?.type === 'required' && <p role="alert">Confirm Password is required</p>}
                                 {errors.confirmPassword?.type === 'validate' && <p role="alert">Not Matched</p>}
-                                {matchPassword && <p role="alert">Passwords do not match.</p>}
+                                {error && <p role="alert">Passwords do not match.</p>}
                             </div>
                         </div>
                         {/* Submit Button */}

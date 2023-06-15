@@ -5,6 +5,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
+    console.log(user)
 
     // navbar menu items
     const navItem = <>
@@ -14,8 +15,8 @@ const Navbar = () => {
     // handle logout 
     const handleLogout = () => {
         logOut()
-        .then(() => {})
-        .catch(error => console.log(error))
+            .then(() => { })
+            .catch(error => console.log(error))
     }
     return (
         <div className="navbar bg-neutral text-neutral-content rounded-lg">
@@ -43,11 +44,12 @@ const Navbar = () => {
                 {
                     user ?
                         <>
+                            <span className='text-white'>{user?.displayName}</span>
                             <button onClick={handleLogout} className="btn btn-primary text-white bg-[#005BA2] hover:bg-[#07416d]">Logout</button>
-                        </> : 
+                        </> :
                         <>
                             <Link to="/login">
-                            <button className="btn btn-primary text-white bg-[#005BA2] hover:bg-[#07416d]">Login</button>
+                                <button className="btn btn-primary text-white bg-[#005BA2] hover:bg-[#07416d]">Login</button>
                             </Link>
                         </>}
             </div>

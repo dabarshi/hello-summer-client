@@ -1,15 +1,32 @@
 import logo from "../../assets/logo.svg";
 import Lottie from "lottie-react";
 import registerLottiImg from "../../assets/register/registerLotti.json";
-import { FaGoogle } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { loginWithEmailAndPassword } = useContext(AuthContext);
 
+    const [showPassword, setShowPassword] = useState(false);
+
+    // handle password visibility
+
+    const passwordVisibilityToggle = () => {
+        setShowPassword(!showPassword);
+    }
+
+    // handle submit
     const onSubmit = data => {
 
+        loginWithEmailAndPassword(data.email, data.password)
+            .then((result) => {
+                console.log(result)
+            })
+            .then(error => console.log(error))
 
         console.log(data)
 
@@ -51,15 +68,19 @@ const Login = () => {
                             {errors.email?.type === 'required' && <p role="alert">Email is required</p>}
                         </div>
                         {/* Password */}
-                        <div className="form-control">
+                        <div className="form-control relative">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" {...register("password", {
+                            <input type={showPassword ? "text" : "password"} {...register("password", {
                                 required: true,
                                 minLength: 6,
                                 pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/
                             })} placeholder="Password" className="input input-bordered" />
+                            <button className="absolute top-14 right-5" onClick={passwordVisibilityToggle}>
+                                {
+                                    showPassword ? <FaEyeSlash title="hide" /> : <FaEye title="show" />}
+                            </button>
                             {errors.password?.type === 'required' && <p role="alert">Password is required</p>}
                             {errors.password?.type === 'minLength' && <p role="alert">The password is less than 6 characters</p>}
                             {errors.password?.type === 'pattern' && <p role="alert">The password don`t have a special character or a capital letter</p>}
@@ -69,7 +90,7 @@ const Login = () => {
                             <input type="submit" value="Register" className="btn bg-[#005BA2] hover:bg-[#07416d] text-white w-full" />
                         </div>
                     </form>
-                    <p className="my-4">New here? please,<Link to="/register" className="link link-primary">Register</Link></p>
+                    <p className="my-4">New here? please <Link to="/register" className="link link-primary">Register</Link></p>
 
                 </div>
 
