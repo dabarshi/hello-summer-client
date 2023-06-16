@@ -5,7 +5,7 @@ import contacts from '../../assets/footer/contacts.png';
 const Footer = () => {
     const year = new Date().getFullYear();
     return (
-        <footer className="bg-neutral text-neutral-content rounded-lg">
+        <footer className="bg-neutral text-neutral-content rounded-lg mt-10">
             <div className="grid grid-cols-1 md:grid-cols-3 text-center p-8">
                 <div className='grid place-items-center p-8 space-y-3'>
                     <figure className="pt-6">

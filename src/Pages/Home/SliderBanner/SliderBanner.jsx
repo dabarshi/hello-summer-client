@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
 
 const SliderBanner = () => {
     return (
-        <div>
+        <div className="mb-10">
             <Carousel className="text-center">
                 <div>
                     <img className="w-full rounded-2xl" src={silder14} />
