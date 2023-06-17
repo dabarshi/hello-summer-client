@@ -9,7 +9,7 @@ const ManageUsers = () => {
 
 
     const makeAdmin = (_id) => {
-        fetch(`http://localhost:5000/users/admin/${_id}`, {
+        fetch(`https://b7a12-summer-camp-server-side-dabarshi.vercel.app/users/admin/${_id}`, {
             method: "PATCH"
         })
             .then(res => res.json())
@@ -22,7 +22,7 @@ const ManageUsers = () => {
     }
     const makeInstructor = (_id) => {
         console.log(_id)
-        fetch(`http://localhost:5000/users/instructor/${_id}`, {
+        fetch(`https://b7a12-summer-camp-server-side-dabarshi.vercel.app/users/instructor/${_id}`, {
             method: "PATCH"
         })
             .then(res => res.json())

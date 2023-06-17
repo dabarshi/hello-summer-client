@@ -29,7 +29,7 @@ const Dashboard = () => {
                             <li><NavLink to="/dashboard/user-home"><FaHouseUser></FaHouseUser>User Home</NavLink></li>
                             {
                                 isStudent && <>
-                                    <li><Link to=''><FaBookmark></FaBookmark>My Selected Classes</Link></li>
+                                    <li><NavLink to="/dashboard/student-selected-classes"><FaBookmark></FaBookmark>My Selected Classes</NavLink></li>
                                     <li><Link to=''><FaSwatchbook></FaSwatchbook>My Enrolled Classes</Link></li>
                                 </>
                             }

@@ -36,7 +36,7 @@ const Register = () => {
                 // save user data to server
 
                 const savedUser = { name: loggedUser.displayName, email: loggedUser.email, img: loggedUser.photoURL, role: 'Student' }
-                fetch(`http://localhost:5000/users`, {
+                fetch(`https://b7a12-summer-camp-server-side-dabarshi.vercel.app/users`, {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -73,7 +73,7 @@ const Register = () => {
                     .then(() => {
                         // save data to server
                         const savedUser = { name: data.name, email: data.email, img: data.photoURL, role: 'Student' }
-                        fetch(`http://localhost:5000/users`, {
+                        fetch(`https://b7a12-summer-camp-server-side-dabarshi.vercel.app/users`, {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
