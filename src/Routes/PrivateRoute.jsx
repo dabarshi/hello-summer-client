@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { Navigate, useLocation } from "react-router-dom";
+import { FadeLoader } from "react-spinners";
 
 
 const PrivateRoute = ({ children }) => {
@@ -8,7 +9,7 @@ const PrivateRoute = ({ children }) => {
     const location = useLocation();
 
     if(loading) {
-        return <div>Loading..</div>
+        return <div className="h-screen w-full grid place-items-center"><FadeLoader /></div>
     }
     if (user) {
         return children;
