@@ -6,8 +6,11 @@ import Home from "../Pages/Home/Home/Home";
 import NotFoundPage from "../Pages/NotFoundPage/NotFoundPage";
 import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
-import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
+import Dashboard from "../Layout/Dashboard";
+import UserHome from "../Pages/Dashboard/UserHome/UserHome";
+import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers/ManageUsers";
+
 
 export const router = createBrowserRouter([
     {
@@ -26,9 +29,19 @@ export const router = createBrowserRouter([
                 path: "/login",
                 element: <Login></Login>
             },
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        children: [
             {
-                path: "/dashboard",
-                element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
+                path: 'user-home',
+                element: <UserHome></UserHome>
+            },
+            {
+                path: 'manage-users',
+                element: <ManageUsers></ManageUsers>
             }
         ]
     },
