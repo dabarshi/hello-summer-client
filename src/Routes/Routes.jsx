@@ -10,6 +10,8 @@ import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
 import UserHome from "../Pages/Dashboard/UserHome/UserHome";
 import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers/ManageUsers";
+import ManageClasses from "../Pages/Dashboard/ManageClasses/ManageClasses/ManageClasses";
+import Classes from "../Pages/Classes/Classes/Classes";
 
 
 export const router = createBrowserRouter([
@@ -29,6 +31,10 @@ export const router = createBrowserRouter([
                 path: "/login",
                 element: <Login></Login>
             },
+            {
+                path: "/classes",
+                element: <Classes></Classes>
+            }
         ]
     },
     {
@@ -42,6 +48,10 @@ export const router = createBrowserRouter([
             {
                 path: 'manage-users',
                 element: <ManageUsers></ManageUsers>
+            },
+            {
+                path: 'manage-classes',
+                element: <ManageClasses></ManageClasses>
             }
         ]
     },

@@ -30,7 +30,7 @@ const Login = () => {
                 const loggedUser = result.user;
 
                 // update to server 
-                const savedUser = { name: loggedUser.displayName, email: loggedUser.email, img: loggedUser.photoURL, rule: 'Student' }
+                const savedUser = { name: loggedUser.displayName, email: loggedUser.email, img: loggedUser.photoURL, role: 'Student' }
                 fetch(`http://localhost:5000/users`, {
                     method: 'POST',
                     headers: {

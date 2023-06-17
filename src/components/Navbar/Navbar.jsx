@@ -10,6 +10,7 @@ const Navbar = () => {
     // navbar menu items
     const navItem = <>
         <li><Link to="/">Home</Link></li>
+        <li><Link to="/classes">Classes</Link></li>
         <li><Link to="/dashboard/user-home">Dashboard</Link></li>
     </>;
 
@@ -33,7 +34,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <Link to="/" className="btn btn-ghost normal-case text-xl">
-                    <img width='80px' src={logo} alt="Hello Summer" />
+                    <img  className='none md:flex md:w-20 ' src={logo} alt="Hello Summer" />
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
@@ -45,8 +46,14 @@ const Navbar = () => {
                 {
                     user ?
                         <>
-                            <span className='text-white'>{user?.displayName}</span>
-                            <button onClick={handleLogout} className="btn btn-primary text-white bg-[#005BA2] hover:bg-[#07416d]">Logout</button>
+                            <div className='flex'>
+                                <div className="avatar mr-2">
+                                    <div className="w-12 rounded-full">
+                                        <img title={user?.displayName} src={user?.photoURL} />
+                                    </div>
+                                </div>
+                                <button onClick={handleLogout} className="btn btn-primary text-white bg-[#005BA2] hover:bg-[#07416d]">Logout</button>
+                            </div>
                         </> :
                         <>
                             <Link to="/login">
