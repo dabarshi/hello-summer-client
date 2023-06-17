@@ -34,9 +34,20 @@ const Register = () => {
             .then(result => {
                 const loggedUser = result.user;
                 // save user data to server
-                
-                console.log(loggedUser);
-                navigate(from);
+
+                const savedUser = { name: loggedUser.displayName, email: loggedUser.email, img: loggedUser.photoURL, rule: 'Student' }
+                fetch(`http://localhost:5000/users`, {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(savedUser)
+                })
+                    .then(res => res.json())
+                    .then(() => {
+                        navigate(from);
+                    })
+
 
             })
             .catch(error => console.log(error))
@@ -61,7 +72,7 @@ const Register = () => {
                 updateUser(data.name, data.photoURL)
                     .then(() => {
                         // save data to server
-                        const savedUser = {name: data.name, email: data.email, img: data.photoURL, rule: 'Student'}
+                        const savedUser = { name: data.name, email: data.email, img: data.photoURL, rule: 'Student' }
                         fetch(`http://localhost:5000/users`, {
                             method: 'POST',
                             headers: {

@@ -27,9 +27,21 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then(result => {
-                console.log(result)
-                Swal.fire('Log-in successful')
-                navigate(from)
+                const loggedUser = result.user;
+
+                // update to server 
+                const savedUser = { name: loggedUser.displayName, email: loggedUser.email, img: loggedUser.photoURL, rule: 'Student' }
+                fetch(`http://localhost:5000/users`, {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(savedUser)
+                })
+                    .then(res => res.json())
+                    .then(() => {
+                        navigate(from);
+                    })
             })
             .catch(error => setError(error.message))
     }
