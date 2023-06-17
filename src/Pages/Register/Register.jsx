@@ -25,14 +25,26 @@ const Register = () => {
     const passwordVisibilityToggle = () => {
         setShowPassword(!showPassword);
     }
+
+
+
     // handle google sign in 
     const handleGoogleSignIn = () => {
         googleSignIn()
-        .then(result => console.log(result))
-        .catch(error => console.log(error))
+            .then(result => {
+                const loggedUser = result.user;
+                // save user data to server
+                
+                console.log(loggedUser);
+                navigate(from);
+
+            })
+            .catch(error => console.log(error))
     }
 
-    // handle submit
+
+
+    // handle submit 
     const onSubmit = data => {
         if (data.password !== data.confirmPassword) {
             setError("Passwords do not match")
@@ -47,15 +59,28 @@ const Register = () => {
                 console.log(loggedUser);
                 // update user info
                 updateUser(data.name, data.photoURL)
-                    .then((result) => {
-                        console.log(result)
-                        console.log("updated")
+                    .then(() => {
+                        // save data to server
+                        const savedUser = {name: data.name, email: data.email, img: data.photoURL, rule: 'Student'}
+                        fetch(`http://localhost:5000/users`, {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(savedUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    reset();
+                                    Swal.fire('Registration Successful');
+                                    navigate(from);
+                                }
+                            })
                     })
                     .catch(error => console.log(error))
 
-                Swal.fire('Registration Successful');
-                reset();
-                navigate(from);
+
             })
             .catch(error => {
                 // console.log(error)

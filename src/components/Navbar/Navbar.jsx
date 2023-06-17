@@ -10,6 +10,7 @@ const Navbar = () => {
     // navbar menu items
     const navItem = <>
         <li><Link to="/">Home</Link></li>
+        <li><Link to="/dashboard">Dashboard</Link></li>
     </>;
 
     // handle logout 
