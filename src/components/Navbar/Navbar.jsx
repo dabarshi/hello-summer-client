@@ -11,7 +11,7 @@ const Navbar = () => {
     const navItem = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/classes">Classes</Link></li>
-        <li><Link to="/dashboard/user-home">Dashboard</Link></li>
+        { user && <li><Link to="/dashboard/user-home">Dashboard</Link></li>}
     </>;
 
     // handle logout 

@@ -1,15 +1,18 @@
 import { useQuery } from '@tanstack/react-query'
+import { useContext } from 'react';
+import { AuthContext } from '../providers/AuthProvider';
 
 const useSelectedClass = () => {
-    const { isLoading, data: users = [], refetch } = useQuery({
-        queryKey: ['users'],
+    const {user} = useContext(AuthContext);
+    const { isLoading, data: selectedClasses = [], refetch } = useQuery({
+        queryKey: ['selectedClasses', user?.email],
         queryFn: async () => {
-            const response = await fetch(`https://b7a12-summer-camp-server-side-dabarshi.vercel.app/users`)
+            const response = await fetch(`https://b7a12-summer-camp-server-side-dabarshi.vercel.app/selectedClasses?email=${user?.email}`)
             return response.json();
         },
     })
 
-    return [users, refetch, isLoading]
+    return [selectedClasses, refetch, isLoading]
 };
 
 export default useSelectedClass;

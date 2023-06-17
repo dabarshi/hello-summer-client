@@ -29,7 +29,8 @@ const Dashboard = () => {
                             <li><NavLink to="/dashboard/user-home"><FaHouseUser></FaHouseUser>User Home</NavLink></li>
                             {
                                 isStudent && <>
-                                    <li><NavLink to="/dashboard/student-selected-classes"><FaBookmark></FaBookmark>My Selected Classes</NavLink></li>
+                                    <li><NavLink className={({ isActive }) =>
+                                        isActive ? "active-link" : ""} to="/dashboard/student-selected-classes"><FaBookmark></FaBookmark>My Selected Classes</NavLink></li>
                                     <li><Link to=''><FaSwatchbook></FaSwatchbook>My Enrolled Classes</Link></li>
                                 </>
                             }
@@ -41,8 +42,10 @@ const Dashboard = () => {
                             }
                             {
                                 isAdmin && <>
-                                    <li><NavLink to="/dashboard/manage-classes"><FaUserEdit></FaUserEdit>Manage Classes</NavLink></li>
-                                    <li><NavLink to="/dashboard/manage-users"><FaSwatchbook></FaSwatchbook>Manage Users</NavLink></li>
+                                    <li><NavLink className={({ isActive }) =>
+                                        isActive ? "active-link" : ""} to="/dashboard/manage-classes"><FaUserEdit></FaUserEdit>Manage Classes</NavLink></li>
+                                    <li><NavLink className={({ isActive }) =>
+                                        isActive ? "active-link" : ""} to="/dashboard/manage-users"><FaSwatchbook></FaSwatchbook>Manage Users</NavLink></li>
                                 </>
                             }
 
