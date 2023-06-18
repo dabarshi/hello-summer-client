@@ -4,15 +4,19 @@ import Footer from "../components/Footer/Footer";
 import Container from "../components/Container/Container";
 import { FaBook, FaBookmark, FaCross, FaHouseUser, FaSwatchbook, FaUserEdit } from "react-icons/fa";
 import useAdmin from "../hooks/useAdmin";
+import useInstructor from "../hooks/useInstructor";
+import useStudent from "../hooks/useStudent";
 
 
 
 const Dashboard = () => {
     // const isAdmin = true;
-    const isInstructor = true;
-    const isStudent = true;
+    // const isInstructor = true;
+    // const isStudent = true;
 
     const [isAdmin] = useAdmin();
+    const [isInstructor] = useInstructor();
+    const [isStudent] = useStudent();
     return (
         <div>
             <Container>
