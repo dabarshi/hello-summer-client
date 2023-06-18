@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useSelectedClass from "../../../hooks/useSelectedClass";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 
 
@@ -38,10 +39,10 @@ const StudentSelectedClasses = () => {
         console.log(selectedClass)
 
     }
-    // handle Payment
-    const handlePay = (selectedClass) => {
-        console.log(selectedClass)
-    }
+    // // handle Payment
+    // const handlePay = (selectedClass) => {
+    //     console.log(selectedClass)
+    // }
 
     return (
         <div className="mx-4">
@@ -74,7 +75,9 @@ const StudentSelectedClasses = () => {
                                 <p><span className="font-light">Price : </span>${selectedClass.price}</p>
                                 <div className="card-actions justify-center mt-10">
                                     <button onClick={() => handleDelete(selectedClass)} className="btn bg-[#005BA2] hover:bg-[#07416d] text-white">Delete</button>
-                                    <button onClick={() => handlePay(selectedClass)} className="btn bg-[#005BA2] hover:bg-[#07416d] text-white">Pay</button>
+                                    <Link to="/dashboard/payment">
+                                        <button className="btn bg-[#005BA2] hover:bg-[#07416d] text-white">Pay</button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

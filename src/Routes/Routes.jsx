@@ -13,6 +13,7 @@ import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers/ManageUsers"
 import ManageClasses from "../Pages/Dashboard/ManageClasses/ManageClasses/ManageClasses";
 import Classes from "../Pages/Classes/Classes/Classes";
 import StudentSelectedClasses from "../Pages/Dashboard/StudentSelectedClasses/StudentSelectedClasses";
+import Payment from "../Pages/Dashboard/Payment/Payment";
 
 
 export const router = createBrowserRouter([
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
             {
                 path: 'student-selected-classes',
                 element: <StudentSelectedClasses></StudentSelectedClasses>
+            },
+            {
+                path: 'payment',
+                element: <Payment></Payment>
             },
             {
                 path: 'manage-users',
