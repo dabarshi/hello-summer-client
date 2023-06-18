@@ -3,13 +3,16 @@ import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import Container from "../components/Container/Container";
 import { FaBook, FaBookmark, FaCross, FaHouseUser, FaSwatchbook, FaUserEdit } from "react-icons/fa";
+import useAdmin from "../hooks/useAdmin";
 
 
 
 const Dashboard = () => {
-    const isAdmin = true;
+    // const isAdmin = true;
     const isInstructor = true;
     const isStudent = true;
+
+    const [isAdmin] = useAdmin();
     return (
         <div>
             <Container>
