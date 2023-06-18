@@ -55,7 +55,7 @@ const AuthProvider = ({ children }) => {
             if(currentUser){
                 axios.post('https://b7a12-summer-camp-server-side-dabarshi.vercel.app/jwt', {email: currentUser.email})
                 .then(data =>{
-                    console.log(data.data.token)
+                    // console.log(data.data.token)
                     localStorage.setItem('access-token', data.data.token)
                 })
             }
