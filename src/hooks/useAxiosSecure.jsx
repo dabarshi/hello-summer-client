@@ -9,7 +9,7 @@ const useAxiosSecure = () => {
     const navigate = useNavigate();
 
     const axiosSecure = axios.create({
-        baseURL: 'https://b7a12-summer-camp-server-side-dabarshi.vercel.app/',
+        baseURL: 'https://b7a12-summer-camp-server-side-dabarshi.vercel.app',
     });
 
     useEffect(() => {

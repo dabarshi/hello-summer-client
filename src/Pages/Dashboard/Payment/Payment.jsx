@@ -1,11 +1,14 @@
 import { Elements } from "@stripe/react-stripe-js";
 import CheckOutForm from "./CheckOutForm";
 import { loadStripe } from "@stripe/stripe-js";
+import { useParams } from "react-router-dom";
 
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GETWAY_PK);
 
 const Payment = () => {
+    const id = useParams();
+    console.log(id);
     return (
         <div>
             {/* Page title */}

@@ -75,7 +75,7 @@ const StudentSelectedClasses = () => {
                                 <p><span className="font-light">Price : </span>${selectedClass.price}</p>
                                 <div className="card-actions justify-center mt-10">
                                     <button onClick={() => handleDelete(selectedClass)} className="btn bg-[#005BA2] hover:bg-[#07416d] text-white">Delete</button>
-                                    <Link to="/dashboard/payment">
+                                    <Link to={`/dashboard/payment/${selectedClass._id}`}>
                                         <button className="btn bg-[#005BA2] hover:bg-[#07416d] text-white">Pay</button>
                                     </Link>
                                 </div>
