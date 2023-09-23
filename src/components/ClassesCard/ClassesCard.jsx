@@ -55,7 +55,7 @@ const ClassesCard = ({ singleClass }) => {
     }
 
     return (
-        <div style={{ backgroundColor: availableSeats === 0 && "red", color: availableSeats === 0 && 'white', boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px' }} className={`card bg-base-100 shadow-xl`}>
+        <div style={{ backgroundColor: availableSeats === 0 && "red", color: availableSeats === 0 && 'white', boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px' }} className={`card rounded-md`}>
             <figure className="p-6"><img className="rounded" src={classImg} /></figure>
             <div className="card-body">
                 <h2 className="card-title">{className}</h2>
