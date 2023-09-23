@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 .active-link {
-    @apply bg-black text-white; 
-  }
+  @apply bg-black text-white;
+}
+
+.btn-custom {
+  @apply btn text-white bg-[#ec7d4a] hover:bg-[#fb8b57];
+}

@@ -125,7 +125,7 @@ const Register = () => {
                 <div className="px-4">
                     {/* Google sign in */}
                     <div className="text-center">
-                        <button onClick={handleGoogleSignIn} className="btn bg-[#005BA2] text-white hover:bg-[#07416d]"><FaGoogle></FaGoogle>Google Sign-in</button>
+                        <button onClick={handleGoogleSignIn} className="btn bg-[#005BA2] hover:bg-[#07416d] text-white"><FaGoogle></FaGoogle>Google Sign-in</button>
                     </div>
                     <div className="divider"></div>
                     {/* Form Start */}

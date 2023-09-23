@@ -16,7 +16,7 @@ const ManageUsers = () => {
             .then(data => {
                 if (data.modifiedCount) {
                     refetch();
-                    
+
                 }
             })
     }
@@ -67,10 +67,10 @@ const ManageUsers = () => {
                                 </td>
                                 <td>{user.role}</td>
                                 <th>
-                                    <button  onClick={() => makeInstructor(user._id)} className="btn btn-xs text-white bg-[#005BA2] hover:bg-[#07416d]">Make Instructor</button>
+                                    <button onClick={() => makeInstructor(user._id)} className="btn-custom btn-xs">Make Instructor</button>
                                 </th>
                                 <th>
-                                    <button onClick={() => makeAdmin(user._id)} className="btn btn-xs text-white bg-[#005BA2] hover:bg-[#07416d]">Make Admin</button>
+                                    <button onClick={() => makeAdmin(user._id)} className="btn-custom btn-xs">Make Admin</button>
                                 </th>
                             </tr>)
                         }

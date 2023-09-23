@@ -54,12 +54,12 @@ const Navbar = () => {
                                         <img title={user?.displayName} src={user?.photoURL} />
                                     </div>
                                 </div>
-                                <button onClick={handleLogout} className="btn text-white bg-[#ec7d4a] hover:bg-[#fb8b57]">Logout</button>
+                                <button onClick={handleLogout} className="btn-custom">Logout</button>
                             </div>
                         </> :
                         <>
                             <Link to="/login">
-                                <button className="btn text-white bg-[#ec7d4a] hover:bg-[#fb8b57]">Login</button>
+                                <button className="btn-custom">Login</button>
                             </Link>
                         </>}
             </div>

@@ -4,7 +4,7 @@ import SliderBanner from "../SliderBanner/SliderBanner";
 
 const Home = () => {
     return (
-        <div className="bg-gray-200">
+        <div className="">
             <SliderBanner></SliderBanner>
             <PopularClasses></PopularClasses>
         </div>

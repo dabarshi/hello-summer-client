@@ -16,12 +16,12 @@ const ClassesCard = ({ singleClass }) => {
         console.log(singleClass);
         if (user) {
             const selectedClass = {
-                classId: _id, 
-                className , 
+                classId: _id,
+                className,
                 instructorName,
                 classImg,
                 price,
-                email: user.email,   
+                email: user.email,
             }
             fetch('https://b7a12-summer-camp-server-side-dabarshi.vercel.app/selectedClasses', {
                 method: "POST",
@@ -37,7 +37,7 @@ const ClassesCard = ({ singleClass }) => {
                     }
                 })
         }
-        else{
+        else {
             Swal.fire({
                 title: 'Please login before adding a class?',
                 icon: 'warning',
@@ -55,7 +55,7 @@ const ClassesCard = ({ singleClass }) => {
     }
 
     return (
-        <div style={{ backgroundColor: availableSeats === 0 && "red", color: availableSeats === 0 && 'white' }} className={`card bg-base-100 shadow-xl`}>
+        <div style={{ backgroundColor: availableSeats === 0 && "red", color: availableSeats === 0 && 'white', boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px' }} className={`card bg-base-100 shadow-xl`}>
             <figure className="p-6"><img className="rounded" src={classImg} /></figure>
             <div className="card-body">
                 <h2 className="card-title">{className}</h2>
@@ -63,7 +63,7 @@ const ClassesCard = ({ singleClass }) => {
                 <p><span className="font-light">Available Seats : </span>{availableSeats}</p>
                 <p><span className="font-light">Price : </span>${price}</p>
                 <div className="card-actions justify-center mt-10">
-                    <button onClick={() => handleClick(singleClass)} disabled={availableSeats === 0 ? true : false} className="btn bg-[#005BA2] hover:bg-[#07416d] text-white">Select</button>
+                    <button onClick={() => handleClick(singleClass)} disabled={availableSeats === 0 ? true : false} className="btn-custom">Select</button>
                 </div>
             </div>
         </div>

@@ -22,13 +22,13 @@ const SliderBanner = () => {
         <div className="mb-10">
             <Carousel className="text-center">
                 <div>
-                    <img className="w-full rounded-2xl" src={silder14} />
+                    <img className="w-full " src={silder14} />
 
-                    <div className="absolute top-0 bg-black w-full h-full bg-opacity-20 rounded-2xl">
+                    <div className="absolute top-0 bg-black w-full h-full bg-opacity-20 ">
                         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
                             <p className="font-semibold md:text-2xl text-white uppercase my-2">A chance to provide Formative Experiences</p>
                             <Link to="/register">
-                                <button className="btn btn-primary text-white bg-[#005BA2] hover:bg-[#07416d]">Register Camp</button>
+                                <button className="btn-custom">Register</button>
                             </Link>
                         </div>
                     </div>
@@ -37,23 +37,23 @@ const SliderBanner = () => {
 
                 </div>
                 <div>
-                    <img className="w-full rounded-2xl" src={silder7} />
-                    <div className="absolute top-0 bg-black w-full h-full bg-opacity-10 rounded-2xl">
+                    <img className="w-full " src={silder7} />
+                    <div className="absolute top-0 bg-black w-full h-full bg-opacity-10 ">
                         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
                             <p className="font-semibold md:text-2xl text-white uppercase my-2">A chance to provide Formative Experiences</p>
                             <Link to="/register">
-                                <button className="btn btn-primary text-white bg-[#005BA2] hover:bg-[#07416d]">Register Camp</button>
+                                <button className="btn-custom">Register</button>
                             </Link>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <img className="w-full rounded-2xl" src={silder3} />
-                    <div className="absolute top-0 bg-black w-full h-full bg-opacity-10 rounded-2xl">
+                    <img className="w-full " src={silder3} />
+                    <div className="absolute top-0 bg-black w-full h-full bg-opacity-10 ">
                         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
                             <p className="font-semibold md:text-2xl text-white uppercase my-2">A chance to provide Formative Experiences</p>
                             <Link to="/register">
-                                <button className="btn btn-primary text-white bg-[#005BA2] hover:bg-[#07416d]">Register Camp</button>
+                                <button className="btn-custom">Register</button>
                             </Link>
                         </div>
                     </div>
