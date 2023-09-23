@@ -7,11 +7,11 @@ import Container from "../components/Container/Container";
 const Main = () => {
     return (
         <div>
+            <Navbar></Navbar>
             <Container>
-                <Navbar></Navbar>
                 <Outlet></Outlet>
-                <Footer></Footer>
             </Container>
+            <Footer></Footer>
         </div>
     );
 };
